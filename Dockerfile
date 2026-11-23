@@ -42,7 +42,7 @@ RUN set -eu; \
     python -m py_compile /app/railway/setup.py /app/railway/first_expert.py; \
     python -c "import importlib.metadata as m; v = m.version('octop'); assert v == '1.0.3b7', v"; \
     HOME=/tmp/b OCTOP_HOME=/tmp/b/.octop python -c "from octop.cli.support.db import open_cli_services; from octop.infra.agents.providers.presets import load_provider_presets; from octop.infra.users.password import validate_password_policy; assert load_provider_presets()"; \
-    rm -r /tmp/b
+    if [ -d /tmp/b ]; then rm -r /tmp/b; fi
 
 EXPOSE 8088
 
